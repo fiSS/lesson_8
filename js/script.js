@@ -46,7 +46,7 @@ let deadline = '2019-04-09';                                            //зад
 
 function getTimeRemaining(endtime) {                                    //функция считает между датой(сейчас) и deadline
 let t = Date.parse(endtime) - Date.parse(new Date())
-if (t < 0){
+if (t < 0){                                                             //таймер в минус не уходит
 t = 0 
 }                                                                       //сюда помещаем разницу между датами. parse превращает
 let seconds = Math.floor((t/1000) % 60),                                //любую дату в колличество милисекунд                                                        
