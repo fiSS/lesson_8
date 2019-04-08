@@ -42,13 +42,14 @@ info.addEventListener('click', function(event){
 });
 //timer
 
-let deadline = '2019-04-08'; //задали конечную дату
-
-function getTimeRemaining(endtime) {                            //функция считает между датой(сейчас) и deadline
-    let t = Date.parse(endtime) - Date.parse(new Date()),       //сюда помещаем разницу между датами. parse превращает
-      seconds = Math.floor((t/1000) % 60),                      //любую дату в колличество милисекунд                                                        
-      minutes = Math.floor((t/1000/60) % 60),                   //делим на 1000 чтобы получить к-во целых секунд, затем на 60-целых минут
-      hours = Math.floor((t/(1000*60*60)));                     //количество целых часов
+function getTimeRemaining(endtime) {                                 //функция считает между датой(сейчас) и deadline
+    let t = Date.parse(endtime) - Date.parse(new Date())
+    if (t < 0){
+        t = 0 
+    }                                                               //сюда помещаем разницу между датами. parse превращает
+      let seconds = Math.floor((t/1000) % 60),                      //любую дату в колличество милисекунд                                                        
+      minutes = Math.floor((t/1000/60) % 60),                       //делим на 1000 чтобы получить к-во целых секунд, затем на 60-целых минут
+      hours = Math.floor((t/(1000*60*60)));                         //количество целых часов
         // hours = math.floor((t/1000/60/60) % 24),
         // days = math.floor((t/(1000*60*60*24)))
                
