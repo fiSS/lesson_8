@@ -42,6 +42,8 @@ info.addEventListener('click', function(event){
 });
 //timer
 
+let deadline = '2019-04-09'; //задали конечную дату
+
 function getTimeRemaining(endtime) {                                 //функция считает между датой(сейчас) и deadline
     let t = Date.parse(endtime) - Date.parse(new Date())
     if (t < 0){
