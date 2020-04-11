@@ -1,0 +1,23 @@
+.timer {
+  text-align: center;
+  width: 800px;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 150px;
+  border: 4px solid black;
+  border-radius: 2%;
+}
+.timer-title {
+  font-size: 36px;
+  color: #c78030;
+}
+.timer-action {
+  font-size: 24px;
+  color: #fff;
+  margin-top: 40px;
+}
+.timer-numbers {
+  margin-top: 40px;
+  font-size: 90px;
+  color: #c78030;
+}
