@@ -1,52 +1,62 @@
-let deadline = '2022-06-07';
+window.addEventListener('DOMContentLoaded', function() {
 
-function getTimeRemaining(endtime) {
-    let t = Date.parse(endtime) - Date.parse(new Date())
 
-    if (t < 0){
-        t = 0
+    //timer
+
+    let deadline = '2020-04-15';
+
+    function getTimeRemaining(endtime) {
+        let t = Date.parse(endtime) - Date.parse(new Date()),
+        seconds = Math.floor((t/1000) % 60),
+        minutes = Math.floor((t/1000/60) % 60),
+        hours = Math.floor((t/(1000*60*60)%24)),
+        days = Math.floor((t/(1000*60*60*24)));
+
+        return {
+            'total' : t,
+            'hours' : hours,
+            'minutes': minutes,
+            'seconds': seconds,
+            'days': days
+        };
     }
-    seconds = Math.floor((t/1000) % 60),
-    minutes = Math.floor((t/1000/60) % 60),
-    hours1 = Math.floor((t/(1000*60*60))),
-    hours = Math.floor(t/(1000*60*60) % 24);
-    // days = Math.floor(t/(1000*60*60*24));
+    //функция выставляет и запускает часы
+    function setClock(id, endtime) {
+        let timer = document.getElementById(id),
+            seconds = timer.querySelector('.seconds'),
+            minutes = timer.querySelector('.minutes'),
+            hours = timer.querySelector('.hours'),
+            days = timer.querySelector('.days'),
+            timeInterval = setInterval(updateClock, 1000);
+            
+    
 
-            if (hours < 10) hours = "0" + hours;
-            if (minutes < 10) minutes  = "0" + minutes;
-            if (seconds < 10) seconds  = "0" + seconds;
-            // if (days < 10) days = "0" + days;
-
-    return {
-        'total' : t,
-        'hours' : hours,
-        'minutes' : minutes,
-        'seconds' : seconds        
-    };
-}
-
-function setClock(id, endtime) {
-    let timer = document.getElementById(id),
-        // days = document.querySelector('.days'),
-        hours = timer.querySelector('.hours'),
-        minutes = timer.querySelector('.minutes'),
-        seconds = timer.querySelector('.seconds'),
-        timeInterval = setInterval(updateClock, 1000);
-
+        //функция обновляет каждую секунду
         function updateClock() {
             let t = getTimeRemaining(endtime);
-            // days.textContent = t.days;
-            hours.textContent = t.hours;
-            minutes.textContent = t.minutes;
-            seconds.textContent = t.seconds;
-
-            if (t.total <= 0) {
-                clearInterval(timeInterval);
-            }
             
+            //ведущие нули
+            function addZero(num) {
+                if (num <= 9) {
+                    return "0" + num;
+                } else return num;
+            };
+            
+            
+            hours.textContent = addZero(t.hours);
+            minutes.textContent = addZero(t.minutes);
+            seconds.textContent = addZero(t.seconds);
+            days.textContent = addZero(t.days);
+
+         //чтобы не уходило в минус           
+        if(t.total <= 0) {
+            clearInterval(timeInterval);
+            hours.textContent = "00";
+            minutes.textContent = "00";
+            seconds.textContent = "00";
+            days.textContent = "00";
         }
+    }
 }
-
-setClock('timer', deadline);
-
-
+    setClock('timer', deadline);
+});
