@@ -1,6 +1,6 @@
 # Таймер обратного отсёта
 
- # Usage
+## Usage
 
 1. let deadline установка конечной даты до которой таймер будет работать.
 2. function getTimeRemaining считает между датой сейчас и deadline.
